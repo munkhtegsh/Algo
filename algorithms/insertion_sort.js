@@ -1,25 +1,57 @@
-function insertionSort(array) {
-  // Loop over array.
-  for (let i = 0; i < array.length; i++) {
-    // Declare a temporary variable equal to the current item's value.
-    let temp = array[i];
-    // Declare a variable equal to one index lower than the current item's index.
-    let j = i - 1;
-    // As long as the current item isn't the first item in the array
-    // and the previous item's value is bigger than the current item's value
-    // set the previous item equal to the current item in the array.
-    while (j >= 0 && array[j] > temp) {
-      // Set the current item equal to the previous item,
-      // which value was bigger than the current value. You don't override 
-      // the current value, as that's still stored in the temp var.
-      array[j + 1] = array[j];
-      // Go to the previous item in the array, and check again whether this value
-      // is bigger or smaller than the current item's value.
-      j--;
-    } 
-    // As the current item just switched position, you need to redeclare 
-    // the value of the temp variable, as it's no longer equal to array[i].
-    array[j + 1] = temp;
+
+function insert(array, rightIndex, value) {
+    for(var j = rightIndex;
+        j >= 0 && array[j] > value;
+        j--) {
+        array[j + 1] = array[j];
+    }
+    array[j + 1] = value;
+};
+
+function insertionSort(arr) {
+  /*
+    1. find the rightIdx
+    2. save value of the rightIdx + 1
+    3. move the sub items by 1 step
+    4. insert the value into sub arr
+  */
+
+  for (var i = 0; i < arr.length; i++) {
+    let rightIdx = i;
+    let value = arr[rightIdx + 1];
+    if (arr[rightIdx] > arr[rightIdx + 1]) {
+      insert(arr, rightIdx, value)
+    }
   }
-  return array;
+  return arr
 }
+
+insertionSort([12,3,5,7,11,13,9,6])
+
+
+
+// function insertionSort(array) {
+//   // Loop over array.
+//   for (let i = 0; i < array.length; i++) {
+//     // Declare a temporary variable equal to the current item's value.
+//     let temp = array[i];
+//     // Declare a variable equal to one index lower than the current item's index.
+//     let j = i - 1;
+//     // As long as the current item isn't the first item in the array
+//     // and the previous item's value is bigger than the current item's value
+//     // set the previous item equal to the current item in the array.
+//     while (j >= 0 && array[j] > temp) {
+//       // Set the current item equal to the previous item,
+//       // which value was bigger than the current value. You don't override
+//       // the current value, as that's still stored in the temp var.
+//       array[j + 1] = array[j];
+//       // Go to the previous item in the array, and check again whether this value
+//       // is bigger or smaller than the current item's value.
+//       j--;
+//     }
+//     // As the current item just switched position, you need to redeclare
+//     // the value of the temp variable, as it's no longer equal to array[i].
+//     array[j + 1] = temp;
+//   }
+//   return array;
+// }
