@@ -1,3 +1,31 @@
+// Selection sort:
+
+// Step 1. Find a smallestIdx of the smallestValue in the array
+// Step 2. If the smallestIdx is not eq with currentIdx then swap them
+
+// Time complexity is O(n2)
+
+function selectionSort(arr) {
+  for (var i = 0; i < arr.length; i++) {
+    var smallIdx = i;
+    for (var j = i + 1; j < arr.length; j++) {
+      if (arr[smallIdx] > arr[j]) {
+        smallIdx = j
+      }
+    }
+
+    if (arr[i] !== smallIdx) {
+      let temp = arr[i];
+      arr[i] = arr[smallIdx];
+      arr[smallIdx] = temp
+    }
+  }
+  return arr;
+}
+
+--------------------------------------------------------------------------------
+
+
 function swap(array, firstIndex, secondIndex) {
   let temp = array[firstIndex];
   array[firstIndex] = array[secondIndex];
@@ -33,25 +61,3 @@ function selectionSort(array) {
 }
 
 
-// function selectionSort(array) {
-//   for (let i = 0; i < array.length; i++) {
-//     // Set default active minimum to current index.
-//     let min = i;
-//     // Loop to array from the current value.
-//     for (let j = i + 1; j < array.length; j++) {
-//       // If you find an item smaller than the current active minimum,
-//       // make the new item the new active minimum.
-//       if (array[j] < array[min]) {
-//         min = j;
-//       }
-//       // Keep on looping until you've looped over all the items in the array
-//       // in order to find values smaller than the current active minimum.
-//     }
-//     // If the current index isn't equal to the active minimum value's index anymore
-//     // swap these two elements.
-//     if (i !== min) {
-//       [array[i], array[min]] = [array[min], array[i]];
-//     }
-//   }
-//   return array;
-// }
